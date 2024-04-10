@@ -3,6 +3,10 @@ import pandas as pd
 
 # Load the dataset
 data = pd.read_csv('car_data.csv')
+except FileNotFoundError:
+st.error('car_data.csv file not found. Please make sure it is located in the correct directory.')
+st.stop()
+
 
 def filter_data(car_name, transmission_type, selling_price_range, year_range):
     filtered_data = data
