@@ -1,4 +1,4 @@
-import streamlit as st
+mport streamlit as st
 import pandas as pd
 
 # Set the file path for car_data.csv
@@ -11,20 +11,20 @@ except FileNotFoundError:
     st.error('car_data.csv file not found. Please make sure it is located in the correct directory.')
     st.stop()
 
-# Define a function to filter data
 def filter_data(car_name, transmission_type, selling_price_range, year_range):
     filtered_data = data
     if car_name:
-        filtered_data = filtered_data[filtered_data['car_name'].str.contains(car_name, case=False)]
+        # Corrected from Car_Name to car_name
+        filtered_data = filtered_data[filtered_data['Car_Name'].str.contains(car_name, case=False)]
     if transmission_type:
-        filtered_data = filtered_data[filtered_data['transmission'].isin(transmission_type)]
+        filtered_data = filtered_data[filtered_data['Transmission'].isin(transmission_type)]
     filtered_data = filtered_data[
-        (filtered_data['selling_price'] >= selling_price_range[0]) &
-        (filtered_data['selling_price'] <= selling_price_range[1])
+        (filtered_data['Selling_Price'] >= selling_price_range[0]) &
+        (filtered_data['Selling_Price'] <= selling_price_range[1])
     ]
     filtered_data = filtered_data[
-        (filtered_data['year'] >= year_range[0]) &
-        (filtered_data['year'] <= year_range[1])
+        (filtered_data['Year'] >= year_range[0]) &
+        (filtered_data['Year'] <= year_range[1])
     ]
     return filtered_data
 
